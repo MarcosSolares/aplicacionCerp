@@ -2,7 +2,7 @@ package aplicacionCerp;
 
 public class Docente extends Personas {
 
-	protected float nota;
+	
 	protected float horario;
 	
 	public Docente(int cedula,String nombre, String apellido,float horario){

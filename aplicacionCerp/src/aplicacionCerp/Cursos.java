@@ -2,10 +2,10 @@ package aplicacionCerp;
 
 public class Cursos {
 	
-	
+	    protected String materia;
 		protected String dia;
 		protected float hora;
-		protected String materia;
+		
 		
 		public Cursos(String materia,String dia,float hora){
 			

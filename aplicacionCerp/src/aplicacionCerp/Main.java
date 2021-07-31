@@ -56,7 +56,7 @@ public class Main {
 				 }
 			System.out.println("Digita el Nombre del  Estudiante: ");
 			String nombre= lector.next();
-			System.out.println("Digita el Apellido del  Docente: ");
+			System.out.println("Digita el Apellido del  Estudiante: ");
 			String apellido= lector.next();
 			System.out.println("Digita la Nota: ");
 			float nota= lector.nextInt();
@@ -170,8 +170,8 @@ public class Main {
 			Iterator<Docente> it = docente.iterator();
 			
 			while(it.hasNext()) {
-				Docente b = it.next();
-				if (b.getApellido().equals(apellido)) {
+				Docente a = it.next();
+				if (a.getApellido().equals(apellido)) {
 					it.remove();
 					System.out.println("********************************************************");
 					System.out.println(" Docente Eliminado: ");
@@ -208,78 +208,109 @@ public class Main {
 					}
 				}
 			}else if (opcion==8) {
-				for (Docente b: docente) {
+				for (Docente a: docente) {
 					 System.out.println("****************");
 					 System.out.println("Datos");
 					 System.out.println("*************");		
-				System.out.println("Cedula: " + b.getCedula() + ", Nombre: "+ b.getNombre() +", Apellido: "+ b.getApellido()+", Hora: "+ b.getHorario());
+				System.out.println("Cedula: " + a.getCedula() + ", Nombre: "+ a.getNombre() +", Apellido: "+ a.getApellido()+", Hora: "+ a.getHorario());
 					
 				}
 			}else if(opcion == 9) {
-				System.out.println("--------------------------------------------");
-	            System.out.println("Has elegido Agregar Curso");
-	        	System.out.println("--------------------------------------------");
-				System.out.println("Ingresa el dia: ");
-				String dia= lector.next();
-				System.out.println("Digita el Nombre de la materia: ");
-				String materia= lector.next();
-				System.out.println("Digite Hora del Curso ( 0 a 24 ): ");
-				float hora= lector.nextInt();
+					System.out.println("--------------------------------------------");
+		            System.out.println("Has elegido Agregar Curso");
+		        	System.out.println("--------------------------------------------");
+					System.out.println("Horario del Curso (0 a 24): ");
+					float hora= lector.nextInt();
+					
+					if(listado.contains(hora)) {
+						 System.out.println("***********************");
+						 System.out.println("cuidado hora existente ");
+						 System.out.println("***********************");
+					 }else {
+							 listado.add(hora);
+							 System.out.println("hora agregada correctamente ");
+							 System.out.println("-----------------------------------");		 
+						 }
+					System.out.println("Digita el nombre de la Materia: ");
+					String materia= lector.next();
+					System.out.println("Digita el Dia( ej Viernes ): ");
+					String dia= lector.next();
+					
+					 System.out.println("********************************************************");
+					 System.out.println("Curso agregado con exito");
+					 System.out.println("********************************************************");
+					Cursos a= new Cursos(materia, dia, hora);
+					cursos.add(a);
+						
+			}else if (opcion==10) { 
 				
-				if(listado.contains(hora)) {
-					 System.out.println("***********************");
-					 System.out.println("Horas ocupadas ");
-					 System.out.println("***********************");
-					 
-				 }else {
-						 listado.add(hora);
-						 System.out.println("Horario disponible ");
-						 System.out.println("-----------------------------------");	
-					 }
-				 System.out.println("********************************************************");
-				 System.out.println("Curso Creado con exito");
-				 System.out.println("********************************************************");
-				Cursos a= new Cursos(dia, materia,hora);
-				cursos.add(a);
+					System.out.println("--------------------------------------------");
+					System.out.println("Has elegido Eliminar Curso"); 
+					System.out.println("--------------------------------------------");
+					System.out.println("Digita el nombre de la Materia a Eliminar: ");
 				
-			}else if (opcion==10) {
-				System.out.println("--------------------------------------------");
-	            System.out.println("Has elegido Eliminar Curso"); 
-	            System.out.println("--------------------------------------------");
-				System.out.println("Digita la Materia a Eliminar: ");
+					String materia= lector.next();
 				
-				String materia= lector.next();
+					Iterator<Cursos> it = cursos.iterator();
 				
-			/*	Iterator<materia> it = materia.iterator();
-				
-				while(it.hasNext()) {
-					Materia a = it.next();
+					while(it.hasNext()) {
+					Cursos a = it.next();
 					if (a.getMateria().equals(materia)) {
 						it.remove();
 						System.out.println("********************************************************");
 						System.out.println(" Curso Eliminado: ");
 						System.out.println("********************************************************");
 					}
+				}	     	
+					
+			}else if (opcion==11) {
 				
-				
+				{
+					
+					System.out.println("--------------------------------------------");
+		            System.out.println("Has elegido Modificar Curso"); 
+		            System.out.println("--------------------------------------------");
+					System.out.println("Digita la Materia del Curso a Modificar: ");	
+					String materia= lector.next();
+					
+					System.out.println("Digita la Nueva Materia: ");
+					String materia2= lector.next();
+					System.out.println("Digita el Dia (ej JUEVES ): ");
+					String dia2= lector.next();
+					System.out.println("Digita Nuevo Horario: ");
+					float hora2= lector.nextInt();
+					
+					Iterator<Cursos> it = cursos.iterator();
+					
+					while(it.hasNext()) {
+						Cursos a = it.next();
+						if (a.getMateria().equals(materia)) {
+							
+							a.setDia(dia2);
+							a.setHora(hora2);
+						
+							System.out.println("********************************************************");
+							System.out.println(" Curso Modificado: ");
+							System.out.println("********************************************************");	
+						
+						}
+					}
+				}	
+					
+			}else if (opcion==12) {		
+					 
 				for (Cursos a: cursos) {
 					 System.out.println("****************");
-					 System.out.println("Datos");
+					 System.out.println("Datos: ");
 					 System.out.println("*************");		
-				System.out.println("Dia: " + a.getDia() + ", Materia: "+ a.getMateria() +", Materia: "+ a.getMateria());
-			
-					}*/
-						
+				System.out.println("Materia: " + a.getMateria() + ", Dia: "+ a.getDia() +", Hora: "+ a.getHora());
+				}		
 		}else if (opcion==13) {
 			programaActivo= false;
 			
-		}else System.out.println("***********************************");
-		///{ System.out.println("No es una opcion");
-			  System.out.println("**********************************");		
-		///}
+	}else System.out.println("***************************************");
+		
 		}while (programaActivo);
-	
-
-	
+		
 	}	
 }
